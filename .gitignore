@@ -1,0 +1,6 @@
+
+.env
+.commands
+.DS_Store
+vendor/
+tmp/

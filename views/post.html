@@ -1,0 +1,24 @@
+
+{{ block "main" . }}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{ template "head" . }}
+    </head>
+    <body>
+        <div class="main-section">
+            {{ .htmlContent }}
+        </div>
+
+        <div>
+            <h2> Trending </h2>
+        </div>
+        {{ template "footer" . }}
+
+    </body>
+<script src="static/scripts/main.js"></script>
+</html>
+
+{{ end }}
+

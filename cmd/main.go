@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 
-	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/joho/godotenv"
@@ -13,6 +12,7 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 
 	"av/times/db"
+	"av/times/pkg"
 	"av/times/pkg/pages"
 )
 
@@ -20,8 +20,10 @@ import (
 
 
 func main() {
+
+    var err error
     // Get a greeting message and print it.
-    err := godotenv.Load()
+    err = godotenv.Load()
     if err != nil {
         log.Fatal("Error loading .env file")
     }
@@ -41,12 +43,19 @@ func main() {
     }
     defer conn.Close(ctx)
     queries := db.New(conn)
-    user, err := queries.CreateUser(ctx, db.CreateUserParams{
-        ID: pgtype.UUID{Bytes: uuid.New(), Valid: true},
-        Email: "Nothig",
-        IsStaff: false,
-        Name: pgtype.Text{String: "User 1", Valid: true},
-    })
+    var user db.User
+    user, err = queries.GetUserByEmail(ctx, "test@email.com")
+    if err != nil {
+        newUser, err := queries.CreateUser(ctx, db.CreateUserParams{
+            Email: "test@email.com",
+            IsStaff: false,
+            Name: pgtype.Text{String: "User 1", Valid: true},
+        })
+        if err != nil {
+            log.Fatal("Cannot create user: ", err)
+        }
+        user = newUser
+    }
 
 	if err != nil {
         log.Fatal("Cannot connect to database: ", err)
@@ -60,7 +69,9 @@ func main() {
     // Middleware
 
     // Main Page
-    pages.Index(e, "/", "index")
+    pages.Index(e, pkg.IndexUrl)
+    pages.Post(e, pkg.PostUrl)
+    pages.SignIn(e, pkg.SignInUrl)
 
     e.Logger.Fatal(e.Start(":" + port))
 }

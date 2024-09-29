@@ -1,0 +1,124 @@
+
+
+:root {
+    --background-color: rgba(240, 240, 245, 1);
+    --text-color: rgba(46, 46, 46, 1);
+    --accent-color: rgba(120, 120, 120, 1);
+
+    --link-color: rgba(26, 13, 171, 1); /* Dark blue */
+    --button-color: rgba(178, 34, 34, 1); /* Dark red */
+    --highlight-color: rgba(46, 139, 87, 1); /* Dark green */
+    --warning-color: rgba(210, 105, 30, 1); /* Muted orange */
+}
+
+
+
+.main-section {
+    min-height: 90vh;
+    line-height: 1.2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+}
+
+.main-section > .login-page {
+    width: 35vw;
+    margin: 0px auto;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /* Center horizontally */
+    align-items: center;
+    padding: 3rem;
+    margin-bottom: 10vh;
+}
+
+.main-section > .login-page > hr {
+    width: 100%;
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    margin-bottom: 2.5rem;
+}
+/* Media query for small screens */
+@media (max-width: 768px) {
+    .main-section > .login-page {
+        width: 80vw;
+    }
+}
+
+.main-section > .login-page > h3 {
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    font-weight: 600;
+}
+.main-section > .login-page > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.input-element > label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.input-element > input {
+    border: none;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.05rem;
+    width: 30ch;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    padding: 8px 10px;
+    color: var(--text-color);
+    border-radius: 2px;
+}
+
+.main-section > .login-page > form > button {
+    background-color: var(--link-color);
+    color: white;
+    font-size: 1rem;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    display: flex;
+}
+
+.main-section > .login-page > form > button:hover {
+    background-color: var(--dark-link-color);
+}
+
+.my-indicator {
+    display: none;
+    width: 15px;
+    height: 15px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 10px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* Show the spinner when it's active */
+.htmx-request .my-indicator {
+    display: block;
+}
+
+.htmx-request.my-indicator {
+    display: block;
+}
+
+

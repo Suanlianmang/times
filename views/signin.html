@@ -1,0 +1,51 @@
+
+
+{{ block "main" . }}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {{ template "head" . }}
+        <link rel="stylesheet" href="static/css/signin.css">
+    </head>
+    <body>
+        <div class="main-section">
+            <div class="login-page">
+                <h3> Sign In to The Something Post </h3>
+                <hr>
+                <form hx-post="/signin/email" hx-target="this" hx-swap="outerHTML" hx-indicator="#spinner">
+                    <div class="input-element">
+                        <label for="email">Email Address</label>
+                        <input type="email" name="email" id="email" placeholder="example@email.com" required>
+                    </div>
+                    <button type="submit">
+                        <div id="spinner" class="my-indicator"></div>
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+        {{ template "footer" . }}
+
+    </body>
+<script src="static/scripts/main.js"></script>
+</html>
+
+{{ end }}
+
+{{ block "code" . }}
+<form hx-post="/signin/email" hx-target="this" hx-swap="outerHTML" hx-indicator="#spinner">
+    <div class="hint">
+        <p>OTP has been sent to {{ .email }}</p>
+    </div>
+    <div class="input-element">
+        <label for="code">Enter OTP</label>
+        <input type="number" name="code" id="code" placeholder="XXX-XXX" minlength="6" maxlength="6" required>
+    </div>
+    <button type="submit">
+        <div id="spinner" class="my-indicator"></div>
+        Submit
+    </button>
+</form>
+{{ end }}
+

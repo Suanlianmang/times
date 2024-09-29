@@ -8,6 +8,35 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type AuthCode struct {
+	ID        pgtype.UUID
+	CreatedAt pgtype.Timestamp
+	UserID    pgtype.UUID
+	Code      pgtype.Text
+}
+
+type Medium struct {
+	ID       pgtype.UUID
+	Post     pgtype.UUID
+	Link     pgtype.Text
+	SubTitle pgtype.Text
+}
+
+type Paragraph struct {
+	ID       pgtype.UUID
+	Post     pgtype.UUID
+	SubTitle pgtype.Text
+	Text     pgtype.Text
+}
+
+type Post struct {
+	ID        pgtype.UUID
+	CreatedAt pgtype.Timestamp
+	By        pgtype.UUID
+	Title     pgtype.Text
+	Draft     pgtype.Bool
+}
+
 type User struct {
 	ID        pgtype.UUID
 	CreatedAt pgtype.Timestamp

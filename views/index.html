@@ -1,35 +1,106 @@
+
+
+{{ define "header" }}
+<style>
+
+</style>
+<header class="header">
+    <h1><a class="title" href="#"> The Something Times </a></h1>
+    <nav>
+        <ol>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">News</a></li>
+            <li><a href="#">Macro Economics</a></li>
+            <li><a href="#">Business Analytics</a></li>
+            <li><a href="#">Basics</a></li>
+
+        </ol>
+    </nav>
+    <div class="dark-mode-toggle">
+        <input type="checkbox" class="dm-checkbox" id="dark-mode-toggle">
+        <label for="dark-mode-toggle" class="dm-checkbox-label">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+            <span class="dm-ball"></span>
+        </label>
+    </div>
+</header>
+{{ end }}
+
+
+
+
 {{ block "main" . }}
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         {{ template "head" . }}
+        <link rel="stylesheet" href="static/css/index.css">
     </head>
     <body>
         {{ template "header" . }}
 
-        <div class="main-section">
-            <h2> This is a page title</h2>
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since
-                the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only
-                five centuries, but also the leap into electronic typesetting,
-                remaining essentially unchanged. It was popularised in the 1960s
-                with the release of Letraset sheets containing Lorem Ipsum
-                passages, and more recently with desktop publishing software like
-                Aldus PageMaker including versions of Lorem Ipsum.
-            </p>
-        </div>
+        <section class="main-section">
+            <h2> {{ .PageTitle }}</h2>
+            <p> {{ .Intro }}</p>
+        </section>
 
-        <div>
-            <h2> Trending </h2>
-        </div>
+        <section class="suggession-section">
+            <h3> Trending </h3>
+
+            <article class="blog-post">
+                <h6><a href="/post/seo-strategy">How to Improve Your Website's SEO</a></h6>
+                <p class="accent-text">By <span class="author">Jane Smith</span> | 
+                    <time datetime="2024-09-10">September 10, 2024</time>
+                </p>
+                <p class="intro-text">Discover effective strategies to enhance your website's visibility and drive more traffic through better SEO.</p>
+            </article>
+
+            <article class="blog-post">
+                <h6><a href="/post/social-media-tips">5 Tips for Better Social Media Engagement</a></h6>
+                <p class="accent-text">By <span class="author">John Doe</span> | 
+                    <time datetime="2024-09-05">September 5, 2024</time>
+                </p>
+                <p class="intro-text">Learn how to boost your social media presence with these five simple but effective tips.</p>
+            </article>
+
+            <article class="blog-post">
+                <h6><a href="/post/content-strategy">Creating a Content Strategy That Works</a></h6>
+                <p class="accent-text">By <span class="author">Emily Johnson</span> | 
+                    <time datetime="2024-08-28">August 28, 2024</time>
+                </p>
+                <p class="intro-text">Building a robust content strategy is key to online success. Here's how to create one that resonates with your audience.</p>
+            </article>
+
+            <article class="blog-post">
+                <h6><a href="/post/seo-strategy">How to Improve Your Website's SEO</a></h6>
+                <p class="accent-text">By <span class="author">Jane Smith</span> | 
+                    <time datetime="2024-09-10">September 10, 2024</time>
+                </p>
+                <p class="intro-text">Discover effective strategies to enhance your website's visibility and drive more traffic through better SEO.</p>
+            </article>
+
+            <article class="blog-post">
+                <h6><a href="/post/social-media-tips">5 Tips for Better Social Media Engagement</a></h6>
+                <p class="accent-text">By <span class="author">John Doe</span> | 
+                    <time datetime="2024-09-05">September 5, 2024</time>
+                </p>
+                <p class="intro-text">Learn how to boost your social media presence with these five simple but effective tips.</p>
+            </article>
+
+            <article class="blog-post">
+                <h6><a href="/post/content-strategy">Creating a Content Strategy That Works</a></h6>
+                <p class="accent-text">By <span class="author">Emily Johnson</span> | 
+                    <time datetime="2024-08-28">August 28, 2024</time>
+                </p>
+                <p class="intro-text">Building a robust content strategy is key to online success. Here's how to create one that resonates with your audience.</p>
+            </article>
+        </section>
         {{ template "footer" . }}
 
     </body>
-<script src="static/scripts/main.js"></script>
+    <script src="static/scripts/main.js"></script>
 </html>
 
 {{ end }}

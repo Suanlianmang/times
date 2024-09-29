@@ -1,5 +1,5 @@
 
-package pkg_middleware
+package pkg
 
 import (
 	"html/template"

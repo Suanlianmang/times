@@ -17,8 +17,16 @@
         <a class="accent-text" href="#"> Terms of Service </a>
         <a class="accent-text" href="#"> About Us </a>
         <a class="accent-text" href="#"> Site Map </a>
+        {{ if .IsAuth }}
+            <p class="accent-text" id="sign-out-btn"> Sign out </p>
+        {{ else }}
+            <a class="accent-text" href="/auth"> Sign In </a>
+        {{ end }}
     </div>
 
 </footer>
 {{ end }}
+
+
+
 

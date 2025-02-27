@@ -10,5 +10,5 @@ type URLToTemplate struct {
 // Define the slice of URLToTemplate structs
 var IndexUrl = URLToTemplate {URL: "/", Template: "index.html"}
 var PostUrl = URLToTemplate {URL: "/post", Template: "post.html"}
-var SignInUrl = URLToTemplate {URL: "/signin", Template: "signin.html"}
+var AuthUrl = URLToTemplate {URL: "/auth", Template: "auth.html"}
 

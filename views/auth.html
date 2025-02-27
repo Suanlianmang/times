@@ -6,14 +6,14 @@
 <html lang="en">
     <head>
         {{ template "head" . }}
-        <link rel="stylesheet" href="static/css/signin.css">
+        <link rel="stylesheet" href="static/css/auth.css">
     </head>
     <body>
         <div class="main-section">
             <div class="login-page">
                 <h3> Sign In to The Something Post </h3>
                 <hr>
-                <form hx-post="/signin/email" hx-target="this" hx-swap="outerHTML" hx-indicator="#spinner">
+                <form hx-post="/auth/email" hx-target="this" hx-swap="outerHTML" hx-indicator="#spinner">
                     <div class="input-element">
                         <label for="email">Email Address</label>
                         <input type="email" name="email" id="email" placeholder="example@email.com" required>
@@ -23,12 +23,12 @@
                         Submit
                     </button>
                 </form>
+                <button id="google-auth-btn">Sign in with Google</button>
             </div>
         </div>
         {{ template "footer" . }}
-
     </body>
-<script src="static/scripts/main.js"></script>
+<script type="module" src="static/scripts/main.js"></script>
 </html>
 
 {{ end }}
@@ -48,4 +48,6 @@
     </button>
 </form>
 {{ end }}
+
+
 

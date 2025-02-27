@@ -1,0 +1,14 @@
+# Root directory of the project
+root = "."
+
+# Temporary directory to store compiled binaries
+tmp_dir = "tmp"
+
+[build]
+  bin = "tmp/main"           # Compiled output binary
+  cmd = "go build -o tmp/main ./cmd" # Command to build
+  include_ext = ["go", "tpl", "tmpl", "html", "md"] # File extensions to watch
+  exclude_dir = ["vendor", "tmp", "assets", "sql"] # Directories to ignore
+
+[log]
+  level = "debug"

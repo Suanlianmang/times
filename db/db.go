@@ -10,6 +10,7 @@ import (
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgconn"
 )
+const DBKey = "dbQueries"
 
 type DBTX interface {
 	Exec(context.Context, string, ...interface{}) (pgconn.CommandTag, error)

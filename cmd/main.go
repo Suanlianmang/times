@@ -6,21 +6,18 @@ import (
 	"os"
 
 	"github.com/jackc/pgx/v5"
-	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 
 	"av/times/db"
 	"av/times/pkg"
+	"av/times/pkg/auth"
 	"av/times/pkg/pages"
 )
 
 
-
-
 func main() {
-
     var err error
     // Get a greeting message and print it.
     err = godotenv.Load()
@@ -43,35 +40,35 @@ func main() {
     }
     defer conn.Close(ctx)
     queries := db.New(conn)
-    var user db.User
-    user, err = queries.GetUserByEmail(ctx, "test@email.com")
-    if err != nil {
-        newUser, err := queries.CreateUser(ctx, db.CreateUserParams{
-            Email: "test@email.com",
-            IsStaff: false,
-            Name: pgtype.Text{String: "User 1", Valid: true},
-        })
-        if err != nil {
-            log.Fatal("Cannot create user: ", err)
-        }
-        user = newUser
-    }
-
-	if err != nil {
-        log.Fatal("Cannot connect to database: ", err)
-	}
-    log.Print(user)
-
+	//    var user db.User
+	//    user, err = queries.GetUserByEmail(ctx, "test@email.com")
+	//    if err != nil {
+	//        newUser, err := queries.CreateUser(ctx, db.CreateUserParams{
+	//            Email: "test@email.com",
+	//            IsStaff: false,
+	//            Name: pgtype.Text{String: "User 1", Valid: true},
+	//        })
+	//        if err != nil {
+	//            log.Fatal("Cannot create user: ", err)
+	//        }
+	//        user = newUser
+	//    }
+	//
+	// if err != nil {
+	//        log.Fatal("Cannot connect to database: ", err)
+	// }
+    auth.InitFirebase();
     e := echo.New()
     e.Use(middleware.Logger())
     e.Static("/static", "assets")
 
     // Middleware
+    e.Use(db.DatabaseMiddleware(queries))
+    e.Use(auth.JWTMiddleware)
 
     // Main Page
     pages.Index(e, pkg.IndexUrl)
     pages.Post(e, pkg.PostUrl)
-    pages.SignIn(e, pkg.SignInUrl)
-
+    pages.AuthHandler(e, pkg.AuthUrl)
     e.Logger.Fatal(e.Start(":" + port))
 }

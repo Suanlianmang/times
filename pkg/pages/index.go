@@ -29,7 +29,6 @@ func Index(c *echo.Echo, urlToTemplate pkg.URLToTemplate) {
         }
         return c.Render(http.StatusOK, "main", data)
     }
-
     group.GET("", _main)
 }
 
